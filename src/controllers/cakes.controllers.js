@@ -1,4 +1,4 @@
-import { postCakesDB } from "../repositories/cakes.repository"
+import { postCakesDB } from "../repositories/cakes.repository.js"
 
 
 export async function postCakes(req, res){

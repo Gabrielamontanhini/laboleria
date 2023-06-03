@@ -1,4 +1,4 @@
-import { getAllOrdersDB, getOrderByIdDB, getOrdersOfClientDB, postOrderDB } from "../repositories/orders.repository"
+import { getAllOrdersDB, getOrderByIdDB, getOrdersOfClientDB, postOrderDB } from "../repositories/orders.repository.js"
 
 
 export async function postOrder(req, res) {
@@ -22,18 +22,18 @@ export async function getOrders(req, res) {
 
 export async function getOrderById(req, res) {
     try {
-const orderById= await getOrderByIdDB(req.params)
-res.send(orderById.rows[0]).status(200)
+        const orderById = await getOrderByIdDB(req.params)
+        res.send(orderById.rows[0]).status(200)
     } catch (err) {
         res.status(500).send(err.message)
     }
 }
 
-export async function getOrdersByClient(req, res){
-    try{
-const ordersOfClient = await getOrdersOfClientDB(req.params)
-res.send(ordersOfClient.rows).status(200)
-    }catch (err) {
+export async function getOrdersByClient(req, res) {
+    try {
+        const ordersOfClient = await getOrdersOfClientDB(req.params)
+        res.send(ordersOfClient.rows).status(200)
+    } catch (err) {
         res.status(500).send(err.message)
     }
 }

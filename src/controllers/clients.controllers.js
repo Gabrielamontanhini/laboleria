@@ -1,10 +1,10 @@
-import { postClientsDB } from "../repositories/clients.repository"
+import { postClientsDB } from "../repositories/clients.repository.js"
 
 
-export async function postClients(req, res){
-    try{
-await postClientsDB(req.body)
-return res.sendStatus(201)
+export async function postClients(req, res) {
+    try {
+        await postClientsDB(req.body)
+        return res.sendStatus(201)
     }
     catch (err) {
         res.status(500).send(err.message)
