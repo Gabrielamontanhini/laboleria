@@ -21,8 +21,9 @@ export async function getOrders(req, res) {
 
 
 export async function getOrderById(req, res) {
+    const {id}=req.params
     try {
-        const orderById = await getOrderByIdDB(req.params)
+        const orderById = await getOrderByIdDB(id)
         res.send(orderById.rows[0]).status(200)
     } catch (err) {
         res.status(500).send(err.message)
@@ -30,8 +31,9 @@ export async function getOrderById(req, res) {
 }
 
 export async function getOrdersByClient(req, res) {
+    const {id}=req.params
     try {
-        const ordersOfClient = await getOrdersOfClientDB(req.params)
+        const ordersOfClient = await getOrdersOfClientDB(id)
         res.send(ordersOfClient.rows).status(200)
     } catch (err) {
         res.status(500).send(err.message)

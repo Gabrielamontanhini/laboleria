@@ -17,11 +17,19 @@ export async function getAllOrdersDB(){
 }
 
 export async function getOrderByIdDB(id){
-    const resultado = await db.query(`SELECT * FROM orders WHERE id=$1`, [id])
+    const resultado = await db.query(`SELECT orders.id AS pedido, clients.name AS cliente, cakes.name AS bolo, cakes.price AS valor, orders."createdAt" AS dia, orders."totalPrice" as total
+    FROM orders
+    JOIN clients ON orders."clientId"=clients.id
+    JOIN cakes ON orders."cakeId"=cakes.id
+    WHERE orders.id=$1;`, [id])
     return resultado
 }
 
 export async function getOrdersOfClientDB(id){
-    const resultado = await db.query(`SELECT * FROM orders WHERE "clientId"=$1`, [id])
+    const resultado = await db.query(`SELECT orders.id AS pedido, clients.name AS cliente, cakes.name AS bolo, cakes.price AS valor, orders."createdAt" AS dia, orders."totalPrice" as total
+    FROM orders
+    JOIN clients ON orders."clientId"=clients.id
+    JOIN cakes ON orders."cakeId"=cakes.id
+    WHERE clients.id=$1`, [id])
     return resultado
 }
