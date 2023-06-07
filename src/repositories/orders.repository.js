@@ -8,7 +8,11 @@ export async function postOrderDB(body){
 }
 
 export async function getAllOrdersDB(){
-    const resultado = await db.query(`SELECT * FROM orders;`)
+    const resultado = await db.query(`
+    SELECT orders.id AS pedido, clients.name AS cliente, cakes.name AS bolo, cakes.price AS valor, orders."createdAt" AS dia, orders."totalPrice" as total
+    FROM orders
+    JOIN clients ON orders."clientId"=clients.id
+    JOIN cakes ON orders."cakeId"=cakes.id;`)
     return resultado
 }
 
