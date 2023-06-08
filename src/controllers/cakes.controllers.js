@@ -1,4 +1,4 @@
-import { postCakesDB } from "../repositories/cakes.repository.js"
+import { getCakesDB, postCakesDB } from "../repositories/cakes.repository.js"
 
 
 export async function postCakes(req, res){
@@ -7,6 +7,14 @@ export async function postCakes(req, res){
         return res.sendStatus(201)
     }
     catch (err) {
+        res.status(500).send(err.message)
+    }
+}
+export async function getCakes(req, res){
+    try{
+const allCakes = await getCakesDB()
+return res.send(allCakes.rows).status(200)
+    }catch (err) {
         res.status(500).send(err.message)
     }
 }

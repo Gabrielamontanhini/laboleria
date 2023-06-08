@@ -6,3 +6,8 @@ export async function postCakesDB(body) {
     VALUES ($1, $2 , $3, $4);`, [name, price, image, description])
     return resultado
 }
+
+export async function getCakesDB(){
+    const resultado = await db.query(`SELECT * FROM cakes;`)
+    return resultado
+}
