@@ -33,3 +33,8 @@ export async function getOrdersOfClientDB(id){
     WHERE clients.id=$1`, [id])
     return resultado
 }
+
+export async function deleteOrderByIdDB(id){
+    const resultado = await db.query(`DELETE FROM orders WHERE id=$1`, [id])
+    return resultado
+}
